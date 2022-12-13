@@ -1,0 +1,92 @@
+.App {
+  text-align: center;
+}
+
+body{
+  background-image: url("../cloud.jpg");
+}
+
+h1{
+  text-align: center;
+}
+
+.current-weather-info{
+  text-align: center;
+  width: 100%;
+}
+
+.day-section{
+  display: flex;
+  flex-direction: column;
+}
+
+.extended-day-section{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.weather-weekly-section{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 60px;
+  background-color: white;
+  opacity: 0.7;
+  border-radius: 10px;
+  padding: 10px;
+  max-width: 600px;
+}
+
+.cell{
+  width: 100px;
+}
+
+.weather-month-section{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 40px 0 40px;
+  background-color: white;
+  opacity: 0.7;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.body-section{
+  margin-top: 40px;
+  display: flex;
+  flex-direction: row;
+}
+
+.cities-block{
+  width: 240px;
+  margin-left: 30px;
+  background-color: white;
+  opacity: 0.7;
+  border-radius: 10px;
+}
+
+.cities-list{
+  display: flex;
+  flex-direction: column;
+}
+
+.city-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 40px;
+  width: 200px;
+  text-align: center;
+  padding: 0 10px 0 10px;
+}
+
+.add-section{
+  margin-bottom: 20px;;
+}
+
+.city-item{
+  cursor: pointer;
+}
