@@ -54,7 +54,10 @@ function App() {
         <div className="weather-month-section">
           {
               monthlyForecast.map((item, idx) => (
-              <WeatherDay day={item.day} img={item.imgClass} graduate = {item.temperature} key={idx} />
+              <WeatherDay day={item.day} 
+                          img={item.imgClass} 
+                          graduate = {item.temperature} 
+                          key={idx} />
             ))
           }
         </div>
@@ -73,13 +76,9 @@ function App() {
               }
             </div>
             <div className="cities-section">
-              {
                   <Cities/>
-              }
             </div>
         </div>
-
-
       </div>
     </div>
   );

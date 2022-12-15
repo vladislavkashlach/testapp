@@ -1,24 +1,26 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState, useRef,useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import './App.css';
 
 function Cities() {
 
-    const [cities, setCities] = useState([]);
     const [newCity, setNewCity] = useState('');
+    const cities = useSelector(state => state.cities);    
     const dispatch = useDispatch();
-    const isLoaded = useRef(false);
+    const isCityLoaded = useSelector(state => state.isCityLoaded);
 
     const AddNewCity = () => {
-        const isExists = cities.some(item => item === newCity)
-        if(isExists)
-            return;
-
-        setCities([...cities, newCity])        
+        dispatch({
+            type: 'FORECAST/ADD_CITY',
+            payload: newCity
+          }) 
     }
 
     const RemoveCity = (city) =>{
-        setCities(cities.filter(item => item !== city));
+        dispatch({
+            type: 'FORECAST/REMOVE_CITY',
+            payload: city
+          }) 
     }
 
     const ChangeCity = (city) =>{
@@ -32,24 +34,22 @@ function Cities() {
           })  
     }
 
-    useEffect(() => { 
+    const GetCities = () => {
+        dispatch({
+            type: 'FORECAST/GET_CITIES'
+          })  
+    }
 
-        if(!isLoaded.current)
+    useEffect(() => { 
+        
+        if(!isCityLoaded)
             return;
 
         localStorage.setItem('Cities', JSON.stringify(cities));
         },[cities])
 
-    useEffect(() => { 
-
-        isLoaded.current = false;
-
-
-        const saved = localStorage.getItem("Cities");
-        if(saved && saved != null && saved !== '')
-            setCities(JSON.parse(saved));
-
-        isLoaded.current = true;
+    useEffect(() => {
+        GetCities();
         },[])
 
   return (
@@ -60,13 +60,14 @@ function Cities() {
         </div>      
         
         <div className='cities-list'>
-            {
-                !cities ? '' : cities.map((item, idx) => (
+            {cities.length > 0 ?
+                cities.map((item, idx) => (
                     <div key={idx} className='city-row'>
                         <span className='city-item' onClick={e => ChangeCity(item)}>{item}</span>
                         <span className='city-item' onClick={e => RemoveCity(item)}>X</span>
                     </div>
                   ))
+                  : ''
             }
         </div>
     </div>
